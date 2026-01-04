@@ -22,7 +22,7 @@ fi
 
 # Download and run the main installation script
 echo -e "${BLUE}Downloading main installation script...${NC}"
-curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/main/install.sh -o /tmp/smart_shell_install.sh
+curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/master/install.sh -o /tmp/smart_shell_install.sh
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}Main installation script downloaded successfully.${NC}"

@@ -54,7 +54,7 @@ Install Smart Shell directly with a single command:
 
 ```bash
 # One-line installation
-curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/main/quick_install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/master/quick_install.sh | bash
 ```
 
 ### Method 2: Direct Download with curl
@@ -63,14 +63,14 @@ You can install Smart Shell directly using curl with our installation script:
 
 ```bash
 # Download and run the installation script
-curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/master/install.sh | bash
 ```
 
 Or download the script first and run it:
 
 ```bash
 # Download the installation script
-curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/main/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/master/install.sh -o install.sh
 
 # Make it executable and run
 chmod +x install.sh
