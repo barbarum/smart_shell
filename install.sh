@@ -175,20 +175,20 @@ install_smart_shell() {
     # Download Smart Shell files from GitHub
     if command_exists "curl"; then
         print_info "Downloading Smart Shell files using curl..."
-        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/main/smart_shell.sh" -o "$INSTALL_DIR/smart_shell.sh"
-        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/main/config.sh" -o "$INSTALL_DIR/config.sh"
-        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/main/utils.sh" -o "$INSTALL_DIR/utils.sh"
-        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/main/commands.txt" -o "$INSTALL_DIR/commands.txt"
-        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/main/README.md" -o "$INSTALL_DIR/README.md"
-        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/main/LICENSE" -o "$INSTALL_DIR/LICENSE"
+        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/smart_shell.sh" -o "$INSTALL_DIR/smart_shell.sh"
+        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/config.sh" -o "$INSTALL_DIR/config.sh"
+        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/utils.sh" -o "$INSTALL_DIR/utils.sh"
+        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/commands.txt" -o "$INSTALL_DIR/commands.txt"
+        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/README.md" -o "$INSTALL_DIR/README.md"
+        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/LICENSE" -o "$INSTALL_DIR/LICENSE"
     elif command_exists "wget"; then
         print_info "Downloading Smart Shell files using wget..."
-        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/main/smart_shell.sh" -O "$INSTALL_DIR/smart_shell.sh"
-        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/main/config.sh" -O "$INSTALL_DIR/config.sh"
-        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/main/utils.sh" -O "$INSTALL_DIR/utils.sh"
-        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/main/commands.txt" -O "$INSTALL_DIR/commands.txt"
-        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/main/README.md" -O "$INSTALL_DIR/README.md"
-        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/main/LICENSE" -O "$INSTALL_DIR/LICENSE"
+        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/smart_shell.sh" -O "$INSTALL_DIR/smart_shell.sh"
+        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/config.sh" -O "$INSTALL_DIR/config.sh"
+        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/utils.sh" -O "$INSTALL_DIR/utils.sh"
+        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/commands.txt" -O "$INSTALL_DIR/commands.txt"
+        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/README.md" -O "$INSTALL_DIR/README.md"
+        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/LICENSE" -O "$INSTALL_DIR/LICENSE"
     else
         print_error "Neither curl nor wget is available. Cannot download Smart Shell files."
         return 1
