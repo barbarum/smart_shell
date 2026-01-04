@@ -17,19 +17,21 @@ Before using Smart Shell, ensure you have the following installed:
 
 ### Required Dependencies
 - **Bash** (version 4.0 or higher)
-- **Qwen CLI** - Required for AI command interpretation
+- **Qwen Code** - Required for AI command interpretation
+- **Node.js 20+** - Required for Qwen Code
 - **coreutils** - For basic command-line utilities
 - **timeout command** (Linux) or **gtimeout** (macOS with GNU coreutils)
 
-### Installing Qwen CLI
+### Installing Qwen Code
 
-Smart Shell requires the Qwen CLI for AI-powered command interpretation:
+Smart Shell requires Qwen Code for AI-powered command interpretation:
 
 ```bash
-# Install Qwen CLI using pip
-pip install qwen-cli
+# Install Qwen Code using npm
+npm install -g @qwen-code/qwen-code@latest
 
-# Or install using your preferred method as per Qwen documentation
+# Or install using Homebrew (macOS, Linux)
+brew install qwen-code
 ```
 
 ### Platform-Specific Requirements
@@ -45,6 +47,37 @@ brew install coreutils
 - The `timeout` command is typically available by default in most distributions
 
 ## Installation
+
+### Method 1: One-line Installation (Recommended)
+
+Install Smart Shell directly with a single command:
+
+```bash
+# One-line installation
+curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/main/quick_install.sh | bash
+```
+
+### Method 2: Direct Download with curl
+
+You can install Smart Shell directly using curl with our installation script:
+
+```bash
+# Download and run the installation script
+curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/main/install.sh | bash
+```
+
+Or download the script first and run it:
+
+```bash
+# Download the installation script
+curl -fsSL https://raw.githubusercontent.com/barbarum/smart_shell/main/install.sh -o install.sh
+
+# Make it executable and run
+chmod +x install.sh
+./install.sh
+```
+
+### Method 2: Manual Installation
 
 1. Clone or download the Smart Shell repository
 2. Ensure all prerequisites are installed
@@ -120,14 +153,15 @@ Smart Shell maintains a command history that persists between sessions:
 
 ### Common Issues
 
-1. **Qwen API not responding**: Ensure Qwen CLI is properly installed and configured
+1. **Qwen API not responding**: Ensure Qwen Code is properly installed and configured
 2. **Timeout errors**: Check your `QWEN_TIMEOUT` setting in config.sh
 3. **Command history not saving**: Ensure you have write permissions to your home directory
 
 ### Debugging
 
 If you encounter issues, verify:
-- Qwen CLI is installed and accessible from your PATH
+- Qwen Code is installed and accessible from your PATH
+- Node.js 20+ is installed
 - All required dependencies are installed
 - Configuration settings in config.sh are correct
 

@@ -288,7 +288,7 @@ suggest_correction() {
     return 0
 }
 
-# Interpret user intention using Qwen Code CLI
+# Interpret user intention using Qwen Code
 interpret_intention_with_qwen() {
     local input="$1"
 
@@ -299,7 +299,7 @@ interpret_intention_with_qwen() {
 
     # Check if qwen command is available
     if ! command -v qwen &> /dev/null; then
-        echo "Warning: qwen command not found. Please install Qwen CLI to use this feature."
+        echo "Warning: qwen command not found. Please install Qwen Code to use this feature."
         echo ""
         return
     fi
