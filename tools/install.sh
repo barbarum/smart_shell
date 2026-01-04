@@ -181,6 +181,7 @@ install_smart_shell() {
         curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/commands.txt" -o "$INSTALL_DIR/commands.txt"
         curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/README.md" -o "$INSTALL_DIR/README.md"
         curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/LICENSE" -o "$INSTALL_DIR/LICENSE"
+        curl -fsSL "https://raw.githubusercontent.com/barbarum/smart_shell/master/ss" -o "$INSTALL_DIR/ss"
     elif command_exists "wget"; then
         print_info "Downloading Smart Shell files using wget..."
         wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/smart_shell.sh" -O "$INSTALL_DIR/smart_shell.sh"
@@ -189,6 +190,7 @@ install_smart_shell() {
         wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/commands.txt" -O "$INSTALL_DIR/commands.txt"
         wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/README.md" -O "$INSTALL_DIR/README.md"
         wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/LICENSE" -O "$INSTALL_DIR/LICENSE"
+        wget -q "https://raw.githubusercontent.com/barbarum/smart_shell/master/ss" -O "$INSTALL_DIR/ss"
     else
         print_error "Neither curl nor wget is available. Cannot download Smart Shell files."
         return 1
@@ -196,14 +198,15 @@ install_smart_shell() {
     
     # Make the main script executable
     chmod +x "$INSTALL_DIR/smart_shell.sh"
-    
+    chmod +x "$INSTALL_DIR/ss"
+
     print_success "Smart Shell installed to $INSTALL_DIR"
 }
 
 # Create an alias for easy access
 setup_alias() {
     print_info "Setting up alias..."
-    
+
     # Determine shell configuration file
     if [[ -n "$ZSH_VERSION" ]]; then
         CONFIG_FILE="$HOME/.zshrc"
@@ -212,7 +215,7 @@ setup_alias() {
     else
         CONFIG_FILE="$HOME/.bashrc"  # Default to bash
     fi
-    
+
     # Add alias to shell configuration
     if ! grep -q "alias smart_shell=" "$CONFIG_FILE" 2>/dev/null; then
         echo "" >> "$CONFIG_FILE"
@@ -222,6 +225,47 @@ setup_alias() {
         print_info "Run 'source $CONFIG_FILE' or restart your terminal to use the alias"
     else
         print_info "Alias already exists in $CONFIG_FILE"
+    fi
+
+    # Add the 'ss' command to shell configuration
+    if ! grep -q "alias ss=" "$CONFIG_FILE" 2>/dev/null; then
+        echo "" >> "$CONFIG_FILE"
+        echo "# Smart Shell quick entrypoint" >> "$CONFIG_FILE"
+        echo "alias ss='$HOME/.smart_shell/smart_shell.sh'" >> "$CONFIG_FILE"
+        print_success "'ss' command added to $CONFIG_FILE"
+        print_info "Run 'source $CONFIG_FILE' or restart your terminal to use 'ss' command"
+    else
+        print_info "'ss' command already exists in $CONFIG_FILE"
+    fi
+}
+
+# Setup the 'ss' command in PATH
+setup_ss_command() {
+    print_info "Setting up 'ss' command in PATH..."
+
+    # Create a bin directory in user's home if it doesn't exist
+    local user_bin="$HOME/.local/bin"
+
+    # Check if ~/.local/bin exists, if not try ~/bin
+    if [ ! -d "$user_bin" ]; then
+        user_bin="$HOME/bin"
+        if [ ! -d "$user_bin" ]; then
+            mkdir -p "$user_bin"
+        fi
+    fi
+
+    # Create a symlink to the ss script in the user's bin directory
+    local ss_symlink="$user_bin/ss"
+
+    if [ ! -L "$ss_symlink" ]; then
+        # Create the symlink
+        ln -s "$HOME/.smart_shell/ss" "$ss_symlink"
+        print_success "'ss' command installed to $user_bin"
+        print_info "Add '$user_bin' to your PATH if not already present:"
+        print_info "  For bash: echo 'export PATH=\$PATH:$user_bin' >> ~/.bashrc && source ~/.bashrc"
+        print_info "  For zsh:  echo 'export PATH=\$PATH:$user_bin' >> ~/.zshrc && source ~/.zshrc"
+    else
+        print_info "'ss' command already exists in $user_bin"
     fi
 }
 
@@ -247,9 +291,13 @@ main() {
     # Setup alias
     setup_alias
 
+    # Setup ss command in PATH
+    setup_ss_command
+
     print_success "Smart Shell installation completed!"
     print_info "To start Smart Shell, run: $HOME/.smart_shell/smart_shell.sh"
     print_info "Or use the alias: smart_shell (after sourcing your shell config)"
+    print_info "Or use the quick command: ss (after sourcing your shell config or adding ~/.local/bin to PATH)"
     print_info "For more information, visit: https://github.com/barbarum/smart_shell"
 }
 

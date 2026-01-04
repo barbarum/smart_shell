@@ -101,6 +101,14 @@ Start Smart Shell by running:
 - `history` - Show command history
 - `exit` or `quit` - Exit the shell
 
+### Quick Access
+
+After installation, you can access Smart Shell in multiple ways:
+
+- `smart_shell` - Using the alias created during installation
+- `ss` - Quick entrypoint (after sourcing your shell config)
+- `~/.smart_shell/smart_shell.sh` - Direct path to the script
+
 ### Examples
 
 Smart Shell can interpret natural language:
